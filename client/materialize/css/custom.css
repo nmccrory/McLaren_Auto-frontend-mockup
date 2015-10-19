@@ -51,7 +51,7 @@
   text-align: center;
 }
 #hero2{
-  background: url('../images/drive_today.jpg') no-repeat center center ; 
+  background: url('../images/drive_today.jpg') no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -258,6 +258,27 @@ background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+#model_info{
+  height: 30vh;
+  outline: 1px solid orange;
+}
+#app_floater{
+  position: fixed;
+  margin-top: 50vh;
+}
+#lowerappcontainer{
+  position:fixed;
+
+}
+.tabs .indicator{
+  background-color: #E13539 !important;
+}
+.tabs .tab a {
+  color: #E13539;
+}
+.parallax-container{
+  height: 85vh;
 }
 .selected{
   border-bottom: 2px solid #E13539;

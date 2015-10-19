@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.use(express.static(__dirname + '/client/'));
 
@@ -15,5 +18,5 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket){
 	console.log('Sockets started');
 })
-//require('./server/config/mongoose.js');
-require('./server/config/routes.js')(app);
+require('./config/mongoose.js');
+require('./config/routes.js')(app);
