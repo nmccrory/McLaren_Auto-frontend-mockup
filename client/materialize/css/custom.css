@@ -271,6 +271,12 @@ background-size: cover;
   position:fixed;
 
 }
+.lower_hero{
+  background-color:#E13539;
+}
+.lower_hero h1,h2,h3,h4,h5,h6{
+  color:white;
+}
 .tabs .indicator{
   background-color: #E13539 !important;
 }
