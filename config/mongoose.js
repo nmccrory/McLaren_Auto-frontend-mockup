@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 
-mongoose.connect('mongodb://localhost/shopdemo');
+mongoose.connect('mongodb://shopdemo');
 
 var models_path = __dirname + '/../server/models';
 
