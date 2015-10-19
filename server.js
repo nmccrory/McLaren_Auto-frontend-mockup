@@ -15,7 +15,7 @@ app.set('view engine', 'html');
 
 var port = process.env.PORT || CONFIG.port;
 app.listen(port, function(){
-	console.log('Server running on port 5000');
+	console.log('Server running');
 })
 /*var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket){
