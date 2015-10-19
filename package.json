@@ -1,7 +1,7 @@
 {
   "name": "MEAN_Friends",
   "version": "0.0.1",
-  "main": "server/server.js",
+  "main": "server.js",
   "engines": {
   	"node": "0.12.2"
   },
