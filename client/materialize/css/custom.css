@@ -168,7 +168,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 60vh;
+  height: 30vh;
 }
 #logopres{
   height:40vh;
@@ -300,4 +300,46 @@ background-size: cover;
 }
 #arrow img{
   max-width: 10vw;
+}
+.page-footer{
+  text-align:center;
+}
+.footer_list{
+  list-style-type: none;
+}
+.footer_list li {
+  display:inline-block;
+  margin: 0px 2vw;
+}
+#eventSection{
+  text-align: center;
+  padding: 12vh 0px 15vh 0px;
+}
+.eventWrapper{
+  width: 90%;
+  margin:0 auto;
+  border: 2px solid #E6E6E6;
+  text-align: center;
+}
+.eventWrapper img{
+  width:100%;
+}
+.eventInfo{
+  padding: 2vh;
+  display:block;
+  text-align: left;
+}
+.eventHeader h5{
+  font-weight:200;
+}
+.eventIcon{
+  vertical-align: middle;
+}
+.eventLink{
+  vertical-align: middle;
+  color: #E64A19;
+}
+.eventLink p{
+  font-size: 14pt;
+  font-weight:300;
 }

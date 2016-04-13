@@ -14,6 +14,7 @@ app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 
 var port = process.env.PORT || CONFIG.port;
+// var port = 5000;
 app.listen(port, function(){
 	console.log('Server running');
 })
