@@ -6,127 +6,64 @@ shopApp.config(function ($routeProvider){
 		controller: 'homeController'
 	})
 	.when('/models', {
-		templateUrl: 'partials/models.html'
-	})
-	.when('/modelsapp', {
-		templateUrl: 'partials/modelsapp.html',
-		controller: 'vehiclesController',
-		controllerAs: 'VC'
+		templateUrl: 'partials/models.html',
+		controller: 'modelsController as mC'
 	})
 })
-//creating preloader factory
-shopApp.factory('preloader', function($q, $rootScope){
+//creating scroll service
+shopApp.service('anchorSmoothScroll', function(){
+    
+    this.scrollTo = function(eID) {
 
-	function Preloader(imageLocations){
-		this.imageLocations = imageLocations;
+        // This scrolling function 
+        // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
+        
+        var startY = currentYPosition();
+        var stopY = elmYPosition(eID);
+        var distance = stopY > startY ? stopY - startY : startY - stopY;
+        if (distance < 100) {
+            scrollTo(0, stopY); return;
+        }
+        var speed = Math.round(distance / 100);
+        if (speed >= 20) speed = 20;
+        var step = Math.round(distance / 25);
+        var leapY = stopY > startY ? startY + step : startY - step;
+        var timer = 0;
+        if (stopY > startY) {
+            for ( var i=startY; i<stopY; i+=step ) {
+                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+            } return;
+        }
+        for ( var i=startY; i>stopY; i-=step ) {
+            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+        }
+        
+        function currentYPosition() {
+            // Firefox, Chrome, Opera, Safari
+            if (self.pageYOffset) return self.pageYOffset;
+            // Internet Explorer 6 - standards mode
+            if (document.documentElement && document.documentElement.scrollTop)
+                return document.documentElement.scrollTop;
+            // Internet Explorer 6, 7 and 8
+            if (document.body.scrollTop) return document.body.scrollTop;
+            return 0;
+        }
+        
+        function elmYPosition(eID) {
+            var elm = document.getElementById(eID);
+            var y = elm.offsetTop;
+            var node = elm;
+            while (node.offsetParent && node.offsetParent != document.body) {
+                node = node.offsetParent;
+                y += node.offsetTop;
+            } return y;
+        }
 
-		this.imageCount = this.imageLocations.length;
-		this.loadCount = 0;
-		this.errorCount = 0;
-
-		this.states = {
-			PENDING: 1, 
-			LOADING: 2,
-			RESOLVED: 3, 
-			REJECTED: 4
-		}
-
-		this.state = this.states.PENDING;
-
-		//when image is loaded, return promise
-		this.deferred = $q.defer();
-		this.promise = this.deferred.promise;
-	}
-
-	Preloader.preloadImages = function(imageLocations){
-		var preloader = new Preloader(imageLocations);
-
-		return(preloader.load());
-	};
-
-	Preloader.prototype = {
-		constructor: Preloader,
-
-		isInitiated: function isInitiated(){
-			return( this.state !== this.states.PENDING);
-		},
-		isRejected: function isRejected(){
-			return(this.state === this.states.REJECTED);
-		},
-		isResolved: function isResolved(){
-			return(this.state === this.states.RESOLVED);
-		},
-		load: function load(){
-			if (this.isInitiated()){
-				return(this.promise);
-			}
-			this.state = this.states.LOADING;
-
-			for(var i=0;i<this.imageCount; i++){
-				this.loadImageLocation(this.imageLocations[i]);
-			}
-
-			return(this.promise);
-		},
-
-		handleImageError: function handleImageError(imageLocation){
-			this.errorCount++;
-
-			if(this.isRejected()){
-				return;
-			}
-			this.state = this.states.REJECTED;
-			this.deferred.reject(imageLocation);
-		},
-
-		handleImageLoad: function handleImageLoad(imageLocation){
-			this.loadCount++;
-
-			if(this.isRejected()){
-				return;
-			}
-
-			this.deferred.notify({
-				percent: Math.ceil(this.loadCount/this.imageCount * 100),
-				imageLocation: imageLocation
-			});
-
-			if(this.loadCount === this.imageCount){
-				this.state = this.states.RESOLVED;
-				this.deferred.resolve(this.imageLocations);
-			}
-		},
-
-		loadImageLocation: function loadImageLocation(imageLocation){
-			var preloader = this;
-
-			var image = $(new Image())
-				.load(
-					function(event){
-						$rootScope.$apply(
-							function(){
-								preloader.handleImageLoad(event.target.src);
-								preloader = image = event = null;
-							}
-						);
-					}
-				)
-				.error(
-					function(event){
-						$rootScope.$apply(
-							function(){
-								preloader.handleImageError(event.target.src);
-								preloader = image = event = null;
-							}
-						);
-					}
-				)
-				.prop("src", imageLocation);
-		}
-	};
-	return(Preloader);
-	}
-);
+    };
+    
+});
 
 //creating vehicles factory
 shopApp.factory('VehicleFactory', function($http, $location){
@@ -141,84 +78,8 @@ shopApp.factory('VehicleFactory', function($http, $location){
 	}
 	return factory;
 })
-//creating vehicles controller
-shopApp.controller('vehiclesController', function(VehicleFactory){
-	var that = this;
-	this.boolean = true;
-	
-	this.loadScript = function(){
-		$(document).ready(function(){
-			setTimeout(function(){
-				$('ul.tabs').tabs();
-				$('.parallax').parallax();
-			}, 500);
-			
-		 	$('.parallax').parallax();
-		})
-	}
-	
-	this.loadScript();
-	
-	this.getvehicles = function(){
-		VehicleFactory.getVehicles(function(data){
-			that.vehicles = data;
 
-			console.log(that.vehicles);
-		})
-	}
-	this.getvehicles();
-	this.testfunction = function(){
-		console.log('TESTED');
-	}
-})
-//preloader controller 
-shopApp.controller('preloaderController', function(VehicleFactory, preloader){
-	var that = this;
-	this.isLoading = true;
-	this.isSuccessful = false;
-	this.percentLoaded = 0;
 
-	this.imageLocations = [
-	];
-
-	this.loadThem = function(callback){
-		var myarray = [];
-		VehicleFactory.getVehicles(function(data){
-			for(x in data){
-				for(n in data[x].img_urls){
-					myarray.push(data[x].img_urls[n].url);
-				}
-			}
-			callback(myarray);
-		})
-	}
-	this.imageLocations = this.loadThem(function(myarray){
-		console.log(myarray);
-		return myarray;
-	});
-	
-	preloader.preloadImages(this.imageLocations).then(
-		function handleResolve(imageLocations){
-			that.isLoading = false;
-			that.isSuccessful = true;
-
-			console.log('Preload successful');
-		},
-		function handleReject(imageLocation){
-			that.isLoading = false;
-			that.isSuccessful = false;
-
-			console.log('ERROR LOADING IMAGEs');
-		},
-		function handleNotify(event){
-			that.percentLoaded = event.percent;
-			console.log('Percent loaded:', event.percent);
-		}
-	)
-	console.log(this.loadThem(function(){
-		console.log('Made it to point C');
-	}));
-})
 //creating generic home page controller
 shopApp.controller('homeController', function(){
 	var that = this;
@@ -232,4 +93,62 @@ shopApp.controller('homeController', function(){
 
 	this.loadScripts();
 })
+//creating models page controller
+shopApp.controller('modelsController', function($scope, $location, anchorSmoothScroll){
+	var that = this;
 
+	this.gotoElement = function(eID){
+		$location.hash(eID);
+		anchorSmoothScroll.scrollTo(eID);
+	}
+	this.i = 0; 
+	this.k = 0;
+	this.models = document.getElementsByClassName('mainModelsTitle');
+	this.series = document.getElementsByClassName('modelNavElement');
+	var routine = window.setInterval(function(){
+		console.log(that.models.item(that.i));
+		console.log("that.i = "+that.i);
+		console.log("is that.models null?" +that.models);
+		that.models.item(that.i).style.opacity = 1;
+		that.i++;
+		if(that.i == that.models.length){
+			window.clearInterval(routine);
+		}
+	},200);
+	window.setTimeout(function(){
+		var routine2 = window.setInterval(function(){
+			that.series.item(that.k).style.opacity = 1;
+			that.k++;
+			if(that.k == that.series.length){
+				window.clearInterval(routine2);
+			}
+		}, 500);
+	}, 1800);
+
+})
+shopApp.directive('setClassWhenAtBottom', function ($window,$timeout) {
+  var $win = angular.element($window); // wrap window object as jQuery object
+  
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var bottomClass = attrs.setClassWhenAtBottom;// get CSS class from directive's attribute value 
+      // get element's offset top relative to document
+      var thresh = $(window).height() - (($(window).height()/3)*2);
+      console.log("Thresh: "+thresh);
+      $win.on('scroll', function (e) {
+      	offsetBottom = $(window).height() - element.prop('offsetTop');
+      	console.log(offsetBottom);
+        if (offsetBottom > 400) {
+          element.addClass(bottomClass);
+          console.log("offsetBottom = "+offsetBottom);
+          console.log("Inside of scroll conditional");
+        } else {
+        	console.log("Removing");
+        	console.log("offsetBottom = "+offsetBottom);
+          element.removeClass(bottomClass);
+        }
+      })
+    }
+  };
+})

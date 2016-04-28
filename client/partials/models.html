@@ -1,31 +1,39 @@
 <video autoplay loop poster='../materialize/images/mclaren/models/stillfull.jpg' id='bgvid'>
   <source src='../materialize/images/mclaren/models/trimqmclaren675lt.mp4' type='video/mp4'>
 </video>
-  <div class="row">
-    <div class="navbar-fixed">
-      <nav class='fixed_nav' style='position:fixed !important;'>
-        <div class="nav-wrapper" >
-          <a href="#!" class="brand-logo center"><img src="../materialize/images/mclaren/mclaren-logo.png" alt="" id='header_logo'></a>
-          <ul class='hide-on-med-and-down'>
-            <li><a href="#/">HOME</a></li>
-            <li><a class='selected'>MODELS</a></li>
-            <li><a href="#">APPAREL</a></li>
-            <li><a href="#">CONTACT</a></li>
-            <li><a href="#">ABOUT</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+<div class="row">
+  <div class=""style='text-align:center;padding: 2vh 0px;'>
+    <img src="../materialize/images/mclaren/mclaren-logo.png" alt="" id='header_logo'>
   </div>
-<div id='arrow'>
-  <img src="../materialize/images/mclaren/models/downarrow.png" id='downarrow' alt="">  
 </div>
 
-<div class="row" class='lower_hero'>
-  <div class="col s12" style='background-color:white'>
-    <h1 style='font-weight:200'>End of Demo</h1>
-    <h4 style='font-weight:200'>Site built by Nick McCrory:</h4>
-    <h5 style='font-weight:200'>All cars are property of McLaren.</h5>
-    <h5 style='font-weight:200'>Images are not my own.</h5>
+<div class="container" >
+  <div class="row">
+    <div id="mainModelsNav">
+      <span ><h1 class="mainModelsTitle">M</h1><h1 class="mainModelsTitle">O</h1><h1 class="mainModelsTitle">D</h1><h1 class="mainModelsTitle">E</h1><h1 class="mainModelsTitle">L</h1><h1 class="mainModelsTitle">S</h1><i class="material-icons mainModelsTitle" style='font-size:54pt;vertical-align:middle;font-weight:200'>keyboard_arrow_right</i></span>
+      <div id="modelsNavElements">
+        <div class="modelNavElement">
+          <a ng-click="mC.gotoElement('p1Info')"><h1>P1</h1></a>
+        </div>
+        <div class="modelNavElement">
+          <a ng-click="mC.gotoElement('ltInfo')"><h1>675LT</h1></a>
+        </div>
+        <div class="modelNavElement">
+          <a href="/#/"><h1>650S</h1></a>
+        </div>
+        <div class="modelNavElement">
+          <a href="/#/"><h1>570</h1></a>
+        </div>
+        <div class="modelNavElement">
+          <a href="/#/"><h1>540C</h1></a>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+</div>
+<div class="row">
+  <div class="col s12" id='p1Info'></div>
+  <div class="col s12" id='ltInfo'></div>
 </div>
