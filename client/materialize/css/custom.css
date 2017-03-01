@@ -58,16 +58,131 @@
 }
 
 #p1Info{
-  background-color: RGBA(230, 74, 25, 1.00);
+  background: url('../images/mclaren/mclaren-p1.jpg') no-repeat;
+  background-size:cover;
   height:100vh;
   width:100%;
   display:block;
 }
-#ltInfo{
-  background-color: RGBA(82, 193, 236, 1.00);
+#p1TextWrapper{
   height:100vh;
+  color: gray;
+  width: 20%;
+  padding: 15px 15px;
+  margin: 0px 5% 0px 70%;
+  background-color: RGBA(250, 250, 250, 1.0);
+}
+#p1TextWrapper h4{
+  font-size: 28pt;
+  color:RGBA(225, 52, 57, 1.00) ;
+}
+#p1TextWrapper h5{
+  color:RGBA(225, 52, 57, 1.00) ;
+}
+#ltInfo{
+  background-color: RGBA(250, 250, 250, 1.00);
+  height:auto;
   width:100%;
+  padding: 0px;
   display:block;
+  border-bottom:2px solid #E6E6E6;
+}
+#ltTitle{
+  color: RGBA(225, 52, 57, 1.00);
+  text-align: center;
+  font-style:italic;
+}
+#ltInfoContainer{
+  width:65%;
+  margin: 0 auto;
+  padding: 8vh 0px 5vh 0px;
+}
+
+#ltHero{
+  width:100%;
+  height: 45vh;
+  background-size:cover;
+  background: url('../images/mclaren/mclaren-675lt.jpg') no-repeat center bottom fixed;
+  border-top: 2px solid #E13439;
+}
+
+#sixFiftySInfo{
+  height:101vh;
+  width:100%;
+  padding:0px;
+  background: url('../images/mclaren/mclaren-650s.jpg') no-repeat center center;
+  background-size: cover;
+}
+#sixFiftySTextWrapper{
+  margin: 0% 0px 0px 70%;
+  padding: 4vh;
+  width: 30%;
+  border-left: 2px solid #E6E6E6;
+  height:101vh;
+  background-color: white;
+}
+
+.sixFiftySPanel{
+  padding: 15px;
+  margin-bottom: 5vh;
+  color: gray;
+  border: 2px solid #E13439;
+  background: #FAFAFA;
+}
+.sixFiftySPanel h4{
+  color: #E13439;
+  font-weight:100;
+}
+.panelLink{
+  vertical-align: middle;
+  color: #E13439;
+}
+#fiveSeventyInfo{
+  height:101vh;
+  width:100%;
+  padding:0px;
+  background-color: #FAFAFA
+}
+#fiveSeventyTitle{
+  text-align: center;
+  color: #E13439;
+  padding:15px 0px;
+  font-weight:200;
+  display: inline-block;
+  vertical-align: middle;
+  width: 37%;
+  font-style:italic;
+}
+#fiveSeventyTitle h1{
+  margin:0px;
+}
+#fiveSeventyHero1{
+  height: 50vh;
+  background: url('../images/mclaren/570s-rear.png') no-repeat center center;
+  background-size: cover;
+  width:100%;
+}
+#sportSeries{
+  margin:0 auto;
+  padding: 5vh 0px 5vh;
+  width: 80%;
+}
+#sportSeriesText{
+  width: 60%;
+  font-size: 16pt;
+}
+#sportSeriesTitle{
+  color: #E13439;
+}
+#sportSeriesTitle h1{
+  margin:40px;
+  font-size: 86pt;
+  font-weight:100;
+  font-style: italic;
+}
+#sportSeries span{
+  vertical-align: middle;
+  display: inline-block;
 }
 #modelsNavElements{
   width: 100%;
@@ -83,14 +198,19 @@
 }
 .modelNavElement a{
   color:white;
-}
-.modelNavElement:hover{
-    text-shadow:none;
-    background: RGBA(225, 53, 57, .8);
+  pointer: hand;
 }
 .modelNavElement a h1{
   font-weight:200;
   margin: 0px;
+  margin-bottom: 1vh;
+}
+.modelNavElement a h1:hover{
+  cursor:pointer;
+  color: #E13439;
+}
+.modelNavElement a h1:hover::after{
+  content: " >";
 }
 #mainModelsNav{
   padding: 10vh 0px 20vh 0px;
@@ -98,6 +218,8 @@
 }
 #topbar{
   margin: 0 !important;
+  text-align: right;
+  padding: 5px 0px;
 }
 #hero{
   background: url('../images/mclaren/mclarenrearhero.jpg') no-repeat center center fixed; 
@@ -286,41 +408,6 @@ background-size: cover;
   height: 50vh;
   outline:1px solid transparent;
 }
-#i650ss{
-  background: url('../images/mclaren/models/650ss1.jpg') center center ;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-#p1{
-  background: url('../images/mclaren/models/p12.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-#i570s{
-  background: url('../images/mclaren/models/570s1.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-#i650sc{
-  background: url('../images/mclaren/models/650sc1.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-#i540c{
-  background: url('../images/mclaren/models/540c1.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 #model_info{
   height: 30vh;
   outline: 1px solid orange;
@@ -363,12 +450,13 @@ background-size: cover;
 }
 .footer_list{
   list-style-type: none;
+  color: gray;
 }
 .footer_list li {
   display:inline-block;
   margin: 0px 2vw;
 }
-#eventSection{
+#ltSection{
   text-align: center;
   padding: 12vh 0px 15vh 0px;
 }
@@ -399,4 +487,20 @@ background-size: cover;
 .eventLink p{
   font-size: 14pt;
   font-weight:300;
+}
+#eventSection{
+  padding: 8vh 0px;
+}
+
+#contact-page-wrapper {
+  height: 96%;
+  width: 100%;
+  background: url('../images/mclaren/mclarenfronthero.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+.contact-wrapper {
+  padding: 0px 10px;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px #222;
 }

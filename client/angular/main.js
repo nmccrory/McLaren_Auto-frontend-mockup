@@ -9,6 +9,10 @@ shopApp.config(function ($routeProvider){
 		templateUrl: 'partials/models.html',
 		controller: 'modelsController as mC'
 	})
+  .when('/contact', {
+    templateUrl: 'partials/contact.html',
+    controller: 'contactController'
+  })
 })
 //creating scroll service
 shopApp.service('anchorSmoothScroll', function(){
@@ -106,9 +110,6 @@ shopApp.controller('modelsController', function($scope, $location, anchorSmoothS
 	this.models = document.getElementsByClassName('mainModelsTitle');
 	this.series = document.getElementsByClassName('modelNavElement');
 	var routine = window.setInterval(function(){
-		console.log(that.models.item(that.i));
-		console.log("that.i = "+that.i);
-		console.log("is that.models null?" +that.models);
 		that.models.item(that.i).style.opacity = 1;
 		that.i++;
 		if(that.i == that.models.length){
@@ -125,6 +126,10 @@ shopApp.controller('modelsController', function($scope, $location, anchorSmoothS
 		}, 500);
 	}, 1800);
 
+})
+
+shopApp.controller('contactController', function($scope, $location, anchorSmoothScroll){
+  console.log("In contact controller");
 })
 shopApp.directive('setClassWhenAtBottom', function ($window,$timeout) {
   var $win = angular.element($window); // wrap window object as jQuery object

@@ -1,15 +1,21 @@
 {
-  "name": "MEAN_Friends",
+  "name": "mclaren-clone",
+  "description": "A McLaren Automotive site clone written in Express.js and deployed on Google App Engine.",
   "version": "0.0.1",
-  "main": "server.js",
+  "private": true,
+  "license": "Apache Version 2.0",
+  "author": "nmccrory (ALL CARS BELONG TO MCLAREN AUTOMOTIVE LIMITED.)",
   "engines": {
-  	"node": "0.12.2"
+  	"node": "~4.2"
   },
   "dependencies": {
     "angular-timeago": "^0.1.12",
+    "consolidate": "^0.14.1",
+    "mustache": "^2.2.1",
     "body-parser": "^1.13.1",
-    "express": "~4.2.0",
-    "mongo": "^0.1.0",
-    "mongoose": "^4.1.1"
+    "express": "~4.2.0"
+  },
+  "scripts": {
+    "start": "node server"
   }
 }

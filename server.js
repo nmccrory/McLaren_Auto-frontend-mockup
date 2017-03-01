@@ -13,14 +13,30 @@ app.set('views', __dirname + '/client/views');
 app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 
-var port = process.env.PORT || CONFIG.port;
-// var port = 5000;
+var port = normalizePort(process.env.PORT || 8080);
+
+app.set('port', port);
+
 app.listen(port, function(){
-	console.log('Server running');
+	console.log("Server running on PORT "+port);
 })
-/*var io = require('socket.io').listen(server);
-io.sockets.on('connection', function(socket){
-	console.log('Sockets started');
-})*/
-require('./config/mongoose.js');
 require('./config/routes.js')(app);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}

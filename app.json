@@ -1,6 +1,0 @@
-{
-  "name": "ShopDemo",
-  "env": {
-  	"MONGO_URL": "mongodb://shopdemo:test@ds041144.mongolab.com:41144/heroku_03595mq4"
-  }
-}
