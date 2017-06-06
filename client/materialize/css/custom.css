@@ -228,7 +228,6 @@
   -o-background-size: cover;
   background-size: cover;
   height: 97vh;
-  padding:2vh;
   margin-bottom:0px;
   position:relative;
   width: 100%;
@@ -498,9 +497,29 @@ background-size: cover;
   background: url('../images/mclaren/mclarenfronthero.jpg') no-repeat center center fixed;
   background-size: cover;
 }
+#contact-heading {
+  color:white;
+  margin-top: 10%;
+  font-weight:200;
+  text-shadow: 1px 1px 3px #222;
+}
 .contact-wrapper {
-  padding: 0px 10px;
+  padding: 4%;
+  max-width: 350px;
   background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px #222;
+}
+.contact-wrapper img {
+  display: inline-block;
+  max-width: 50px;
+  vertical-align: middle;
   border-radius: 2px;
-  box-shadow: 1px 1px 4px #222;
+  box-shadow: 1px 1px 2px #222;
+}
+.contact-wrapper h5 {
+  display:inline;
+  font-weight: 200;
+  margin-left: 5%;
+  vertical-align: middle;
 }
